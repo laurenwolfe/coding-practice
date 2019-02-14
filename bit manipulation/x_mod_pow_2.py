@@ -4,7 +4,7 @@ Use bit manipulation to determine whether number is a power of 2.
 from datetime import datetime
 from statistics import mean
 
-NUMBERS = 50000
+NUMBERS = 100000
 TRIALS = 10
 
 
@@ -28,7 +28,7 @@ def trial(test_func, test_values):
 
         test_func(num, power)
 
-        """ Commented out for for benchmarking.
+        """ Test commented out for for benchmarking.
         assert test_func(num, power) == (num % 2 ** power)
         """
 
@@ -52,10 +52,22 @@ if __name__ == "__main__":
         results["library"][2].append(trial(library_mod, test_vals_24))
 
     print("-- Benchmarking Results -- ")
-    print("Bitwise function is: ")
+    print("The bitwise function is: ")
     print("{1:.4f}s faster on average for {0} power trial".
           format("2^8", mean(results["library"][0]) - mean(results["bitwise"][0])))
     print("{1:.4f}s faster on average for {0} power trial".
           format("2^16", mean(results["library"][1]) - mean(results["bitwise"][1])))
     print("{1:.4f}s faster on average for {0} power trial".
           format("2^24", mean(results["library"][2]) - mean(results["bitwise"][2])))
+
+    """
+    For 10 trials of 100000 * n values each, where n refers to 2^n powers tested: 
+
+    -- Benchmarking Results -- 
+    Bitwise function is: 
+    0.2556s faster on average for 2^8 power trial
+    0.4863s faster on average for 2^16 power trial
+    0.6749s faster on average for 2^24 power trial
+
+    Not surprising. Python's % operator has to handle more than just powers of 2. Still, neat!  
+    """
