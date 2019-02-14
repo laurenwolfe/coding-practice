@@ -1,5 +1,5 @@
 """
-Use bit manipulation to determine whether number is a power of 2.
+Use bit_manipulation to determine whether number is a power of 2.
 """
 from datetime import datetime
 
